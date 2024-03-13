@@ -1,6 +1,7 @@
 import React, { useState } from 'react' 
 import { icon} from './constants/constants'
 import { Input } from './constants/ui'
+import { Typography } from '@mui/material'
 
 const Register = () => {
   const [state, setState] = useState({
@@ -10,22 +11,22 @@ const Register = () => {
   })
   return (
     <div>
-      <main class="form-signin w-25 m-auto text-center">
+      <Typography className={`form-signin  m-auto text-center`}   width={{xs:'75%', sm:'50%', md:'25%'}}>
         <form>
-          <img class="mb-4" src={icon} alt="" width={100} />
-            <h1 class="h3 mb-3 fw-normal">Registor</h1>
+          <img className="mb-4" src={icon} alt="" width={100} />
+            <span className="h3 mb-3 fw-normal d-block">Registor</span>
             <Input  label={'Username'} type={'text'} state={state.name} setState={setState}/> 
             <Input  label={'Email address'} type={'email'} state={state.name} setState={setState}/> 
             <Input  label={'Password'} type={'password'} state={state.password} setState={setState}/> 
-            <div class="form-check text-start my-3">
-              <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault" />
-                <label class="form-check-label" for="flexCheckDefault">
+            <div className="form-check text-start my-3">
+              <input className="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault" />
+                <label className="form-check-label" for="flexCheckDefault">
                   Remember me
                 </label>
             </div>
-            <button class="btn btn-primary w-100 py-2" type="submit">Registor</button> 
+            <button className="btn btn-primary w-100 py-2" type="submit">Registor</button> 
         </form>
-      </main>
+      </Typography>
     </div>
   )
 }
