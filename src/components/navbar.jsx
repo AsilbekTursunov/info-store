@@ -22,6 +22,7 @@ const Navbar = () => {
                     <div className="  text-end">
                         {isLogin ? 
                         <div className='d-flex align-items-center'>
+                            <img src={`${user.user.image}`} className="rounded-5 " alt="user-image" style={{width:30}}></img>
                             <p className='m-0 px-3'>{user.user.username}</p>
                             <Link to={'/register'}>
                                 <button type="button" className="btn btn-outline-danger me-2" onClick={removeToken}>Log Out</button>

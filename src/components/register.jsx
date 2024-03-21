@@ -22,7 +22,7 @@ const Register = () => {
       navigate('/')
     }
   } ,[isLogin])
-  
+
   const registerHandler =  async (e) => {
     e.preventDefault() 
     dispatch(userEnterStart())
@@ -37,7 +37,7 @@ const Register = () => {
   
   return (
     <div>
-      <Typography className={`form-signin  m-auto text-center`} width={{ xs: '75%', sm: '50%', md: '25%' }}>
+      <Typography className={` d-block form-signin  m-auto text-center`} component={'span'} width={{ xs: '75%', sm: '50%', md: '25%' }}>
         <form>
           <img className="mb-4" src={icon} alt="" width={100} />
           <span className="h3 mb-3 fw-normal d-block">Registor</span>

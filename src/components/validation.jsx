@@ -8,8 +8,7 @@ const Validation = ({ error }) => {
         }, [error]);
         return leter
     }) 
-    const result = error !== null && errorBag()
-    console.log(result);
+    const result = error !== null && errorBag() 
     return (
         <>
             <div className="alert alert-danger d-flex align-items-center py-1" role="alert">  
