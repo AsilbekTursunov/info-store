@@ -1,31 +1,47 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { icon} from './constants/constants'
 import { Input } from './constants/ui'
 import { Typography } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
-import { loginStart } from './slices/author'
+import { userEnterFailure, userEnterStart, userEnterSuccess} from './slices/author'
+import Validation from './validation'
+import AuthorInfo from './service/axios'
+import { useNavigate } from 'react-router-dom'
 
-const Login = () => {
-  const [state, setState] = useState({
-    email:'',
-    password:''
-  })
+const Login = () => { 
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')  
   const dispatch = useDispatch( )
-  const {isLoading} = useSelector(state => state.author)
-  console.log(isLoading); 
-  const onSubmitHandler = (e) =>{
+  const navigate = useNavigate()
+   
+  const {isLoading, error, isLogin} = useSelector(state => state.author)
+  useEffect(()=>{
+    if(isLogin){
+      navigate('/')
+    }
+  } ,[isLogin]) 
+  const onSubmitHandler = async (e) =>{
     e.preventDefault()
-    dispatch(loginStart())
+    dispatch(userEnterStart())
+    const user = {email, password}  
+    try {
+      const response =  await AuthorInfo.userLogin(user).then(data => data.data) 
+      dispatch(userEnterSuccess(response))
+    } catch (error) {  
+      dispatch(userEnterFailure(error.response.data.errors))  
+    }
   }
+  
   return (
     <div>
       <Typography className={`form-signin  m-auto text-center`}   width={{xs:'75%', sm:'50%', md:'25%'}}>
         <form>
           <img className="mb-4" src={icon} alt="" width={100} />
             <span className="h3 mb-3 fw-normal d-block">Login In</span>
-            <Input  label={'Email address'} type={'email'} state={state.email} setState={setState}/> 
-            <Input  label={'Password'} type={'password'} state={state.password} setState={setState}/> 
-            <button className="btn btn-primary w-100 py-2" type="submit" onClick={onSubmitHandler} disabled={isLoading}>{isLoading ? 'Loading' :'Login'}</button> 
+            {error ? <Validation error ={error}/> : null}
+            <Input  label={'Email address'} type={'email'} state={email} setState={setEmail}/> 
+            <Input  label={'Password'} type={'password'} state={password} setState={setPassword}/> 
+            <button className="btn btn-primary w-100 py-2" type="submit" onClick={onSubmitHandler} disabled={error ? false : isLoading}>{error ? 'Login' : isLoading ? 'Loading' : 'Login'}</button> 
         </form>
       </Typography>
     </div>
