@@ -1,19 +1,20 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getArticleStart, getArticleLogout } from './slices/article'
+import { getArticleStart, getArticleLogout, getArticleLogin } from './slices/article'
+import {Loader}  from '../components/constants/ui/'
 
-const Main = () => {
-  const [load, setLoad] = useState(false)
+const Main = () => { 
   const dispatch = useDispatch()
   const author  = useSelector(state => state.author) 
-  const {isLoading, article}  = useSelector(state => state.article) 
+  const {isLogin, article, isLoading}  = useSelector(state => state.article) 
   if (author.isLogin) {
-    dispatch(getArticleStart())
+    dispatch(getArticleLogin())
   } else{
     dispatch(getArticleLogout())
-  }
+  } 
   return (
     <div className='container'>
+      {isLoading ? <Loader/> : ''}
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         {article.map(item => (
           <div class="col" key={item.favoritesCount}>
@@ -24,7 +25,7 @@ const Main = () => {
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
                     <button type="button" class="btn btn-sm btn-outline-success">View</button>
-                    {isLoading ? <>
+                    {isLogin ? <>
                       <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                       <button type="button" class="btn btn-sm btn-outline-danger">Delete</button>
                     </> : ''}

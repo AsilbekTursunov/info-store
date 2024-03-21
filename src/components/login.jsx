@@ -37,7 +37,7 @@ const Login = () => {
       <Typography className={`d-block form-signin  m-auto text-center`} component={'span'}  width={{xs:'75%', sm:'50%', md:'25%'}}>
         <form>
           <img className="mb-4" src={icon} alt="" width={100} />
-            <span className="h3 mb-3 fw-normal d-block">Login In</span>
+            <span className="h3 mb-3 fw-normal d-block">LogIn</span>
             {error ? <Validation error ={error}/> : null}
             <Input  label={'Email address'} type={'email'} state={email} setState={setEmail}/> 
             <Input  label={'Password'} type={'password'} state={password} setState={setPassword}/> 
