@@ -1,6 +1,6 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
-import { Main, Login, Register, Navbar } from './components';
+import { Main, Login, Register, Navbar, ArticleDetail } from './components';
 import { useEffect } from 'react';
 import { GetItem } from './components/get-user/preset-storage';
 import AuthorInfo from './components/service/axios';
@@ -34,17 +34,21 @@ function App() {
       getUser()
     }
     getarticle()
-  } , []);
+  });
   return (
     <div >
       <Navbar/>
-       <Routes>
-          <Route path={'/'} element={<Main />}/>
-          <Route path={'/login'} element={<Login/>}/>
-          <Route path={'/register'} element={<Register/>}/>
-       </Routes>
+      <div className='container'>
+        <Routes>
+            <Route path={'/'} element={<Main />}/>
+            <Route path={'/login'} element={<Login/>}/>
+            <Route path={'/register'} element={<Register/>}/>
+            <Route path={'/articles/:slug'} element={<ArticleDetail/>}/>
+        </Routes> 
+      </div>
     </div>
   );
 }
 
 export default App;
+ 

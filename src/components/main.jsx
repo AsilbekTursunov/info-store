@@ -2,19 +2,23 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getArticleStart, getArticleLogout, getArticleLogin } from './slices/article'
 import {Loader}  from '../components/constants/ui/'
+import GetArticles from './service/get-articles'
+import { useNavigate } from 'react-router-dom'
 
 const Main = () => { 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const author  = useSelector(state => state.author) 
   const {isLogin, article, isLoading}  = useSelector(state => state.article) 
   if (author.isLogin) {
     dispatch(getArticleLogin())
   } else{
     dispatch(getArticleLogout())
-  } 
+  }  
   return (
     <div className='container'>
-      {isLoading ? <Loader/> : ''}
+      {isLoading ? <Loader/> : 
+      
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         {article.map(item => (
           <div class="col" key={item.favoritesCount}>
@@ -24,7 +28,7 @@ const Main = () => {
                 <p class="card-text">{item.description}</p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-success">View</button>
+                    <button type="button" class="btn btn-sm btn-outline-success" onClick={()=> navigate(`/articles/${item.slug}`)} >View</button>
                     {isLogin ? <>
                       <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                       <button type="button" class="btn btn-sm btn-outline-danger">Delete</button>
@@ -37,6 +41,7 @@ const Main = () => {
           </div>
         ))} 
       </div>    
+      }
     </div>
   )
 }
