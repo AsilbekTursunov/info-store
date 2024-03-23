@@ -22,7 +22,7 @@ const EditArticle = () => {
         try {
             await GetArticles.putArticle(slug, article)  
             dispatch(postArticleSuccess())  
-            navigate('/')
+            navigate('/info-store')
         } catch (error) {
             dispatch(postArticleFailure())  
         }

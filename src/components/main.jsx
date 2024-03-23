@@ -45,9 +45,9 @@ const Main = () => {
                 <p className="card-text">{item.description}</p>
                 <div className="d-flex justify-content-between align-items-center">
                   <div className="btn-group">
-                    <button type="button" className="btn btn-sm btn-outline-success" onClick={()=> navigate(`/articles/${item.slug}`)} >View</button>
+                    <button type="button" className="btn btn-sm btn-outline-success" onClick={()=> navigate(`/info-store/articles/${item.slug}`)} >View</button>
                     {author.isLogin && author.user.user.username === item.author.username && <>
-                      <button type="button" className="btn btn-sm btn-outline-secondary" onClick={()=> navigate(`/edit-article/${item.slug}`)}>Edit</button>
+                      <button type="button" className="btn btn-sm btn-outline-secondary" onClick={()=> navigate(`/info-store/edit-article/${item.slug}`)}>Edit</button>
                       <button type="button" className="btn btn-sm btn-outline-danger" onClick={()=>articleDelete(item.slug)}>Delete</button>
                     </>}
                   </div>

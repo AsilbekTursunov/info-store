@@ -18,7 +18,7 @@ const Register = () => {
   const { isLoading, error, isLogin} = useSelector(state => state.author)
   useEffect(()=>{
     if(isLogin){
-      navigate('/')
+      navigate('/info-store')
     }
   } ,[isLogin])
 

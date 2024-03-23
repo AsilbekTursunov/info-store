@@ -42,12 +42,12 @@ function App() {
       <Navbar/>
       <div className='container'>
         <Routes>
-            <Route path={'/'} element={<Main />}/>
-            <Route path={'/login'} element={<Login/>}/>
-            <Route path={'/register'} element={<Register/>}/>
-            <Route path={'/articles/:slug'} element={<ArticleDetail/>}/>
-            <Route path={'/create-article'} element={<CreateArticle/>}/>
-            <Route path={'/edit-article/:slug'} element={<EditArticle/>}/>
+            <Route path={'/info-store'} element={<Main />}/>
+            <Route path={'/info-store/login'} element={<Login/>}/>
+            <Route path={'/info-store/register'} element={<Register/>}/>
+            <Route path={'/info-store/articles/:slug'} element={<ArticleDetail/>}/>
+            <Route path={'/info-store/create-article'} element={<CreateArticle/>}/>
+            <Route path={'/info-store/edit-article/:slug'} element={<EditArticle/>}/>
         </Routes> 
       </div>
     </div>

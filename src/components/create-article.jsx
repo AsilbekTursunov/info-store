@@ -21,7 +21,7 @@ const CreateArticle = () => {
         try {
             const response = await GetArticles.postArticle(article)   
             dispatch(postArticleSuccess())     
-            navigate('/')
+            navigate('/info-store')
         } catch (error) {
             dispatch(postArticleFailure())  
         }

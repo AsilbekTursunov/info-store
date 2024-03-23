@@ -10,32 +10,32 @@ const Navbar = () => {
     const dispatch = useDispatch()
     const removeToken = () => {
         dispatch(userLogout())
-        navigate('/login')
+        navigate('/info-store/login')
     }
     return (
         <div>
             <header className="py-1 mb-4 border-bottom">
                 <div className="container d-flex flex-wrap justify-content-between align-items-center">
-                    <Link to={'/'} className="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto link-body-emphasis text-decoration-none">
+                    <Link to={'/info-store'} className="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto link-body-emphasis text-decoration-none">
                         <img className=' mx-2' style={{ width: 200 }} src={logo} alt=""  />
                     </Link>
                     <div className="  text-end">
                         {isLogin ?
                             <div className='d-flex align-items-center'>
                                 <p className='m-0 px-3'style={{textTransform:'capitalize'}}>{user.user.username}</p>
-                                <Link to={'/create-article'}>
+                                <Link to={'/info-store/create-article'}>
                                     <button type="button" className="btn  me-2" >Create</button>
                                 </Link>
-                                <Link to={'/login'}>
+                                <Link to={'/info-store/login'}>
                                     <button type="button" className="btn btn-outline-danger me-2" onClick={removeToken}>Log Out</button>
                                 </Link>
                             </div>
                             :
                             <div>
-                                <Link to={'/login'}>
+                                <Link to={'/info-store/login'}>
                                     <button type="button" className="btn btn-outline-primary me-2">Login</button>
                                 </Link>
-                                <Link to={'/register'}>
+                                <Link to={'/info-store/register'}>
                                     <button type="button" className="btn btn-primary">Register</button>
                                 </Link>
                             </div>}
