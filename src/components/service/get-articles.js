@@ -7,6 +7,10 @@ const GetArticles = {
     async getDetails (slug) {
         const {data} = await axios.get(`/articles/${slug}`)
         return data
+    },
+    async postArticle (article) {
+        const {data} = await axios.get(`/articles`, {article})
+        return data
     }
 }
 export default GetArticles;

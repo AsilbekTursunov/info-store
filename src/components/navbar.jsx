@@ -10,7 +10,7 @@ const Navbar = () => {
     const dispatch = useDispatch()
     const removeToken = () => {
         dispatch(userLogout())
-        navigate('login')
+        navigate('/login')
     }
     return (
         <div>
@@ -22,8 +22,11 @@ const Navbar = () => {
                     <div className="  text-end">
                         {isLogin ?
                             <div className='d-flex align-items-center'>
-                                <p className='m-0 px-3'>{user.user.username}</p>
-                                <Link to={'/register'}>
+                                <p className='m-0 px-3'style={{textTransform:'capitalize'}}>{user.user.username}</p>
+                                <Link to={'/create-article'}>
+                                    <button type="button" className="btn  me-2" >Create</button>
+                                </Link>
+                                <Link to={'/login'}>
                                     <button type="button" className="btn btn-outline-danger me-2" onClick={removeToken}>Log Out</button>
                                 </Link>
                             </div>
