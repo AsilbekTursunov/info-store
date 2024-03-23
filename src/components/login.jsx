@@ -25,7 +25,7 @@ const Login = () => {
     dispatch(userEnterStart())
     const user = {email, password}  
     try {
-      const response =  await AuthorInfo.userLogin(user).then(data => data.data) 
+      const response =  await AuthorInfo.userLogin(user)
       dispatch(userEnterSuccess(response))
     } catch (error) {  
       dispatch(userEnterFailure(error.response.data.errors))  

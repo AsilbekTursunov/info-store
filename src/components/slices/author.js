@@ -19,8 +19,7 @@ export const authorSlice = createSlice({
         userEnterSuccess: (state, action) =>{
             state.isLoading = false;
             state.isLogin = true;   
-            state.user = action.payload;
-            console.log(action.payload.user.token);
+            state.user = action.payload; 
             SetItem('token', action.payload.user.token) 
         },
         userEnterFailure: (state, action) =>{

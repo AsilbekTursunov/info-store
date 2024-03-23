@@ -8,16 +8,14 @@ import moment from 'moment'
 
 const ArticleDetail = () => {
     const dispatch = useDispatch()
-    const { slug } = useParams()
-    const [detail, setDetail] = useState({})
+    const { slug } = useParams() 
     const { articleDetail, isLoading } = useSelector(state => state.article)
 
     useEffect(() => {
         const getDetail = async () => {
             dispatch(getDetailStart())
             try {
-                const response = await GetArticles.getDetails(slug);
-                setDetail(response.article)
+                const response = await GetArticles.getDetails(slug); 
                 dispatch(getDetailSuccess(response.article))
             } catch (error) {
                 dispatch(getDetailFailure())

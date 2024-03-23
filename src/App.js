@@ -1,6 +1,6 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
-import { Main, Login, Register, Navbar, ArticleDetail, CreateArticle } from './components';
+import { Main, Login, Register, Navbar, ArticleDetail, CreateArticle, EditArticle } from './components';
 import { useEffect } from 'react';
 import { GetItem } from './components/get-user/preset-storage';
 import AuthorInfo from './components/service/axios';
@@ -22,19 +22,21 @@ function App() {
   const getarticle = async () =>{
     dispatch(getArticleStart())
     try {
-      const response = await GetArticles.getArticles()
+      const response = await GetArticles.getArticles() 
       dispatch(getArticleSuccess(response.articles))
     } catch (error) {
       dispatch(getArticleFailure(error))
     }
-  }
+  } 
+
   useEffect( () => {
     const token = GetItem('token')
     if (token) {
       getUser()
-    }
-    getarticle()
-  });
+      getarticle()
+    }  
+  },[]);
+  
   return (
     <div >
       <Navbar/>
@@ -45,6 +47,7 @@ function App() {
             <Route path={'/register'} element={<Register/>}/>
             <Route path={'/articles/:slug'} element={<ArticleDetail/>}/>
             <Route path={'/create-article'} element={<CreateArticle/>}/>
+            <Route path={'/edit-article/:slug'} element={<EditArticle/>}/>
         </Routes> 
       </div>
     </div>

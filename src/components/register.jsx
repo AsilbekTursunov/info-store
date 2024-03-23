@@ -14,8 +14,7 @@ const Register = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')   
   const dispatch = useDispatch()
-  const navigate = useNavigate()
-
+  const navigate = useNavigate() 
   const { isLoading, error, isLogin} = useSelector(state => state.author)
   useEffect(()=>{
     if(isLogin){
@@ -28,7 +27,7 @@ const Register = () => {
     dispatch(userEnterStart())
     const user = {username:name, email, password}  
     try {
-        const response =  await AuthorInfo.userRegister(user).then(data => data.data)
+        const response =  await AuthorInfo.userRegister(user)
         dispatch(userEnterSuccess(response))
       } catch (error) {   
         dispatch(userEnterFailure(error.response.data.errors)) 
